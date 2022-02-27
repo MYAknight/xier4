@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>网站统计登陆</title>
+<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
+</head>
+
+<body>
+
+<!--
+
+* 17素材vip建站专区模块代码
+* 详尽信息请看官网：http://www.baisheng999.com/pins/vip
+*
+* Copyright , 温州易站网络科技有限公司版权所有
+* 图片不能商用，代码可商用。
+
+* 请尊重原创，未经允许请勿转载。
+* 在保留版权的前提下可应用于个人或商业用途
+
+-->
+
+<!--按钮开始，嫌弃代码太多可删除，主要就是a标签的点击弹窗验证效果-->
+<div class="item">
+	<div class="logo">
+		<img src="statics/images/product-hm.png" alt="网站统计">
+	</div>
+	<div class="title">网站统计</div>
+	<div class="desc">全球最大的中文网站流量分析平台，为网站的精细化运营决策提供数据支持，进而有效提高企业的投资回报率。</div>
+	<div class="opts">
+		<a href="javascript:;" class="tiyan"><span>立即体验</span><em></em></a>
+	</div>
+</div>
+<!--按钮结束-->
+
+<!--弹窗开始-->
+<div class="tan">
+	<div class="box">
+		<div class="form">
+			<span class="close">✖</span>
+			<h3>欢迎来到网站统计</h3>
+			<p class="desc">统计/推广/联盟 账号请在此登录</p>
+			<form action="" onSubmit="return false;">
+				<input type="text" name="name" id="name" placeholder="请输入邮箱地址" />
+				<input type="password" name="password" id="passw" placeholder="请输入密码" />
+				<div class="valicode">
+					<input type="text" name="valicode" id="valicode" placeholder="请输入验证码" />
+					<img src="statics/images/valicode.jpg" />
+				</div>
+				<div class="error"></div>
+				<input type="submit" id="Submit" value="登录">
+			</form>
+			<p class="reg">
+				<a href="#">立即注册</a>
+				<a href="#">忘记密码 </a>
+			</p>
+		</div>
+	</div>
+</div>
+<!--弹窗结束-->
+<script src="statics/js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(function() {
+		//弹窗
+		$('.tiyan').click(function() {
+			$('.tan').show();
+		})
+		//关闭
+		$('.close').click(function() {
+			$('.tan').hide();
+		})
+		//触焦变色
+		$("input").focus(function() {
+			$(this).removeClass('red');
+		});
+		//失去焦点验证当前表单
+
+		$("#name").blur(function() {
+
+			var emailreg = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/;
+			var errtxt = "",
+				name = $('#name').val();
+			if(name == "") {
+				errtxt = "邮箱地址不能为空";
+				$('#name').addClass('red');
+			} else if((!emailreg.test(name))) {
+				errtxt = "请输入正确邮箱地址";
+				$('#name').addClass('red');
+			}else{
+				errtxt = "";
+				$('#name').removeClass('red');
+			}
+			//错误提示消息，有错误则显示，没错误就隐藏
+			showmsg(errtxt);
+		})
+		$("#passw").blur(function() {
+			var errtxt = "",
+				passw = $('#passw').val();
+			if(passw == "") {
+				errtxt = "请输入密码";
+				$('#passw').addClass('red');
+			}else{
+				errtxt = "";
+				$('#passw').removeClass('red');
+			}
+			//错误提示消息，有错误则显示，没错误就隐藏
+			showmsg(errtxt);
+		})
+		$("#valicode").blur(function() {
+			var errtxt = "",
+				valicode = $('#valicode').val();
+			if(valicode == "") {
+				errtxt = "请输入正确的验证码";
+				$('#valicode').addClass('red');
+			}else{
+				errtxt = "";
+				$('#valicode').removeClass('red');
+			}
+			//错误提示消息，有错误则显示，没错误就隐藏
+			showmsg(errtxt);
+		})
+		//验证
+		$('#Submit').click(function() {
+			var thisid = "",
+				errtxt = "";
+			$('input').removeClass('red');
+			var emailreg = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/; //邮箱正则
+			var name = $('input[name=name]').val(),
+				passw = $('input[name=password]').val(),
+				valicode = $('input[name=valicode]').val();
+
+			if(name == "") {
+				errtxt = "邮箱地址不能为空";
+				thisid = "name";
+			} else if((!emailreg.test(name))) {
+				errtxt = "请输入正确邮箱地址";
+				thisid = "name";
+			} else if(passw == "") {
+				errtxt = "请输入密码";
+				thisid = "passw";
+			} else if(valicode == "") {
+				errtxt = "请输入正确的验证码";
+				thisid = "valicode";
+			} else {
+
+			}
+			//错误提示消息，有错误则显示，没错误就隐藏
+			showmsg(errtxt);
+			//错误边框变红
+			thisid ? $('input').removeClass('red').parents('form').find('#' + thisid).focus().addClass('red') : $('#' + thisid).removeClass('red');
+		})
+
+		function showmsg(errtxt) {
+			errtxt ? $('.error').show().text(errtxt) : $('.error').hide();
+		}
+	})
+</script>
+
+</body>
+
+</html>
