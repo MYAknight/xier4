@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>我的收藏</title>
+</head>
+<body>
+<div align="center" style="border: 1px solid #72480c; ">
+    骅骐书库
+</div>
+<br><hr>
+<div align="center">
+    <a href="bookStore/directoryPage.html">首页</a>
+</div>
+<br><hr>
+<div>
+    <table border="1" align="center">
+        <tr th:if="${#lists.isEmpty(session.bookInf)}">
+            <td colspan="3"> 没有查到任何内容</td>
+        </tr>
+        <tr th:unless="${#lists.isEmpty(session.bookInf)}" th:each="book :${session.bookInf}">
+            <!--            <td ><a th:text="${book.name}" th:href="@{'/detailSrevlet?book_ID='+${book.book_ID}}">b1</a></td>-->
+            <td ><a th:text="${book.name}" th:href="@{/detailSrevlet(bID=${book.book_ID})}">b1</a></td>
+            <td th:text="${book.intro}">b1</td>
+            <td ><img th:src="@{(${book.front})}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

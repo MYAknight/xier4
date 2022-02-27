@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>小说导航页</title>
+</head>
+<body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<div align="center" style="border: 1px solid #72480c; ">
+    骅骐书库
+</div>
+<h1 align="center"> 首页 </h1>
+<br><hr>
+当前用户为:
+<span class="x-red"  th:text="${session.userInf.user_name}"/>
+<br><hr>
+<div align="center">
+    <a href="/sk/bookStore/front.html">没有想看的？点击搜索更多</a>|||||
+    <a href="/sk/bookStore/usrHome.html">作者页</a>|||||
+    <a href="/sk/userServlet?method=logout">退出登录</a>|||||
+    <a href="/sk/userServlet?method=myCollection">我的收藏</a>
+</div>
+<br><hr>
+<table id="part" align="center" th:object="${book}">
+    <tr>
+        <th colspan="4">
+            导航页
+        </th>
+
+    </tr>
+    <tr>
+        <th>分类</th>
+        <th>女频排行</th>
+        <th>男频排行</th>
+        <th>推荐</th>
+    </tr>
+    <tr>
+        <td><a href="/sk/diffTypeServlet?type=A">玄幻</a></td>
+        <td>不做了</td>
+        <td>摸了</td>
+        <td>row 1, cell 1</td>
+        <td>row 1, cell 2</td>
+    </tr>
+    <tr>
+        <td><a href="/sk/diffTypeServlet?type=B">都市</a></td>
+        <td>row 1, cell 1</td>
+        <td>row 1, cell 2</td>
+        <td>row 1, cell 1</td>
+        <td>row 1, cell 2</td>
+    </tr>
+    <tr>
+        <td><a href="/sk/diffTypeServlet?type=C">军事</a></td>
+        <td>row 1, cell 1</td>
+        <td>row 1, cell 2</td>
+        <td>row 1, cell 1</td>
+        <td>row 1, cell 2</td>
+    </tr>
+    <tr>
+        <td><a href="/sk/diffTypeServlet?type=D">现实</a></td>
+        <td>row 1, cell 1</td>
+        <td>row 1, cell 2</td>
+        <td>row 1, cell 1</td>
+        <td>row 1, cell 2</td>
+    </tr>
+    <tr>
+        <td><a href="/sk/diffTypeServlet?type=F">悬疑</a></td>
+        <td>row 1, cell 1</td>
+        <td>row 1, cell 2</td>
+        <td>row 1, cell 1</td>
+        <td>row 1, cell 2</td>
+    </tr>
+</table>
+</body>
+</html>

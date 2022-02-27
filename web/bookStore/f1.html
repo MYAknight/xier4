@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索页</title>
+</head>
+<body>
+<script type="text/javascript">
+    function checkEmpty() {
+        var bookName = document.getElementById('bookName');
+        if (bookName.value == "") {
+            alert("内容不能为空");
+            return false;
+        }
+        return true
+    }
+</script>
+<div align="center" style="border: 1px solid #72480c; ">
+    骅骐书库
+</div>
+<br><hr>
+<div align="center">
+    <a href="directoryPage.html">首页</a>
+</div>
+<br><hr>
+<div class="container" align="center">
+
+    <form action="/sk/searchBookServ" onsubmit="checkEmpty()" class="parent" method="get">
+
+        <input type="text" name="bookName">
+        <input type="submit" value="搜索">
+        请输入书名搜索，支持模糊查询
+    </form>
+
+</div>
+<br><br><br><br>
+<div>
+    <table border="1" align="center">
+        <tr th:if="${#lists.isEmpty(session.bookInf)}">
+            <td colspan="3"> 没有查到任何内容</td>
+        </tr>
+        <tr th:unless="${#lists.isEmpty(session.bookInf)}" th:each="book :${session.bookInf}">
+<!--            <td ><a th:text="${book.name}" th:href="@{'/detailSrevlet?book_ID='+${book.book_ID}}">b1</a></td>-->
+            <td ><a th:text="${book.name}" th:href="@{/detailSrevlet(bID=${book.book_ID})}">b1</a></td>
+            <td th:text="${book.intro}">b1</td>
+            <td ><img th:src="@{(${book.front})}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

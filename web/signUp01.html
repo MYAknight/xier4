@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <link rel="stylesheet" type="text/css" href="signUpStatic/css/style.css"/>
+</head>
+
+<body>
+
+<div class="item">
+    <div class="logo">
+        <img src="signUpStatic/images/product-hm.png" alt="网站统计">
+    </div>
+    <div class="title">西二书库</div>
+    <div class="desc" align="center">普通用户登录</div>
+    <div class="opts">
+        <a href="javascript:;" class="tiyan"><span>立即登录</span><em></em></a>
+    </div>
+</div>
+<!--按钮结束-->
+
+<!--弹窗开始-->
+<div class="tan">
+    <div class="box">
+        <div class="form">
+            <span class="close">✖</span>
+            <h3>欢迎来到骅骐书库</h3>
+            <form action="LoginServlet" onSubmit="return checkall();" method="post">
+                <input type="text" name="phone" id="phone" placeholder="手机号"/>
+                <input type="password" name="password" id="passw" placeholder="请输入密码"/>
+                <div class="valicode">
+                    <input type="text" name="valicode" id="valicode" placeholder="请输入验证码"/>
+                    <img src="signUpStatic/images/valicode.jpg"/>
+                </div>
+                <div class="error"></div>
+                <input type="submit" id="Submit" value="登录">
+            </form>
+            <p class="reg">
+                <a href="register01.html">立即注册</a>
+                <a href="#">忘记密码 </a>
+            </p>
+        </div>
+    </div>
+</div>
+<!--弹窗结束-->
+<script src="signUpStatic/js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    var phone = document.getElementById('phone');
+    var passw = document.getElementById('passw');
+    var valicode = document.getElementById('valicode');
+
+    function checkall() {
+
+        if (phone.value == "") {
+            alert("请输入手机号");
+            return false;
+        } else if (passw.value == "") {
+            alert("请输入密码");
+            return false;
+        } else if (valicode.value == "") {
+            alert("请输入验证码");
+            return false;
+        }
+        return true
+    }
+
+
+    $(function () {
+        //弹窗
+        $('.tiyan').click(function () {
+            $('.tan').show();
+        })
+        //关闭
+        $('.close').click(function () {
+            $('.tan').hide();
+        })
+        //触焦变色
+        $("input").focus(function () {
+            $(this).removeClass('red');
+        });
+        //失去焦点验证当前表单
+
+        $("#name").blur(function () {
+
+            var errtxt = "",
+                name = $('#name').val();
+            if (name == "") {
+                errtxt = "用户名不能为空";
+                $('#name').addClass('red');
+            } else {
+                errtxt = "";
+                $('#name').removeClass('red');
+            }
+            //错误提示消息，有错误则显示，没错误就隐藏
+            showmsg(errtxt);
+        })
+        $("#passw").blur(function () {
+            var errtxt = "",
+                passw = $('#passw').val();
+            if (passw == "") {
+                errtxt = "请输入密码";
+                $('#passw').addClass('red');
+            } else {
+                errtxt = "";
+                $('#passw').removeClass('red');
+            }
+            //错误提示消息，有错误则显示，没错误就隐藏
+            showmsg(errtxt);
+        })
+        $("#valicode").blur(function () {
+            var errtxt = "",
+                valicode = $('#valicode').val();
+            if (valicode == "") {
+                errtxt = "请输入正确的验证码";
+                $('#valicode').addClass('red');
+            } else {
+                errtxt = "";
+                $('#valicode').removeClass('red');
+            }
+            //错误提示消息，有错误则显示，没错误就隐藏
+            showmsg(errtxt);
+        })
+        //验证
+        $('#Submit').click(function () {
+            var thisid = "",
+                errtxt = "";
+            $('input').removeClass('red');
+            var name = $('input[name=name]').val(),
+                passw = $('input[name=password]').val(),
+                valicode = $('input[name=valicode]').val();
+
+            if (name == "") {
+                errtxt = "用户名不能为空";
+                thisid = "name";
+            } else if (passw == "") {
+                errtxt = "请输入密码";
+                thisid = "passw";
+            } else if (valicode == "") {
+                errtxt = "请输入正确的验证码";
+                thisid = "valicode";
+            } else {
+
+            }
+            //错误提示消息，有错误则显示，没错误就隐藏
+            showmsg(errtxt);
+            //错误边框变红
+            thisid ? $('input').removeClass('red').parents('form').find('#' + thisid).focus().addClass('red') : $('#' + thisid).removeClass('red');
+        })
+
+        function showmsg(errtxt) {
+            errtxt ? $('.error').show().text(errtxt) : $('.error').hide();
+        }
+    })
+</script>
+
+</body>
+
+</html>

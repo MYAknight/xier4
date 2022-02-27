@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员页面</title>
+</head>
+<body>
+<br><hr>
+<a href="/sk/userServlet?method=logout">退出登录</a>
+<br><hr>
+
+<script type="text/javascript" >
+    function delBook(book_ID) {
+       if (confirm('是否确认删除该记录？')){
+           window.location.href='deleteServlet?book_ID='+book_ID;
+       }
+    }
+    function passBook(book_ID) {
+        if (confirm('确认通过')){
+            window.location.href='passBookServlet?book_ID='+book_ID;
+        }
+    }
+
+
+</script>
+<div align="center" style="border: 1px solid #396fff; ">
+    <h1 align="center">管理员页面</h1>
+</div>
+<div>
+    <table id="tb1" border="1" align="center">
+        <h2>待审阅小说</h2>
+        <tr>
+            <th class="cl1">名称</th>
+            <th class="cl1">简介</th>
+            <th class="cl1">封面</th>
+            <th >是否删除</th>
+        </tr>
+        <tr th:if="${#lists.isEmpty(session.unCheckedBookList)}">
+            <td colspan="5">没有任何待审批内容</td>
+        </tr>
+        <tr th:unless="${#lists.isEmpty(session.unCheckedBookList)}" th:each="book :${session.unCheckedBookList}">
+            <td ><a th:text="${book.name}" th:href="@{/detailSrevlet(bID=${book.book_ID})}">b1</a></td>
+            <td th:text="${book.intro}">b1</td>
+            <td ><img th:src="@{(${book.front})}"></td>
+            <td><input type="button" value="删除" th:onclick="delBook([[${book.book_ID}]])"></td>
+            <td><input type="button" value="通过" th:onclick="passBook([[${book.book_ID}]])"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

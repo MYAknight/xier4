@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+body {
+    margin: 0;
+    background-image: url("../images/wallhaven-4v3yzp.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+*{padding:0;margin:0;box-sizing:border-box;font-family:"微软雅黑"}
+a{text-decoration:none}
+.item{width:380px;height:364px;margin-right:20px;background-color:#fff;margin:0 auto;margin-top:150px;box-shadow:0px 0px 1px rgba(0,0,0,.1)}
+.item .logo{margin-top:40px;text-align:center}
+.item .logo img{width:80px;height:80px}
+.item .title{color:#555966;font-size:18px;font-weight:700;text-align:center;margin-top:23px;margin-bottom:10px}
+.item .desc{color:#808492;font-size:14px;width:300px;height:80px;margin-left:40px;line-height:26px}
+.item .opts{text-align:center;margin-top:36px;padding-left:15px}
+.item .opts a{display:inline-block;color:#396fff;font-size:14px}
+.item .opts em{content:"";display:inline-block;width:12px;height:12px;vertical-align:middle;margin-left:5px;background:url(../images/arrow.png) -12px no-repeat;background-size:12px 10px;-webkit-transition:all .3s ease;-moz-transition:all .3s ease;transition:all .3s ease;opacity:0;margin-bottom:2px}
+.item .opts a:hover em{background-position:0;opacity:1}
+/*以上代码用处不大，可以删除*/
+/*弹窗*/
+.tan{position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,.6);display: none;}
+.tan .box{width: 380px;height: auto;overflow: hidden;background-color: #fff;border-radius: 3px;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);}
+.tan .box .form{position: relative;width: 100%;height: 100%;padding: 40px 50px;text-align: center;overflow: hidden;}
+.tan .box .form span.close{position: absolute;right: 16px;top: 5px;font-size: 14px;display: block;cursor: pointer;height: 8px;width: 8px;color: #b0b8bf;}
+.tan .box .form span:hover{color: #808492;}
+.tan .box .form form input{display: block;width: 100%;outline-style: none;height: 38px;margin-bottom: 10px;border-radius: 3px;border:1px solid #ccc;padding: 0 10px;}
+.tan .box .form h3{font-size: 18px;
+    color: #333437;font-weight: normal;margin-bottom: 8px;}
+.tan .box .form p.desc{color: #0074fa;font-size: 12px;margin-bottom: 18px;}
+.tan .box .form form input[name=valicode]{padding-right: 80px;}
+.tan .box .form form input[type=submit]{background-color: #1278f6;color: #fff;border: 0;height: 40px;cursor: pointer;}
+.tan .box .form form input[type=submit]:hover{background-color: #3382FF;}
+.tan .box .form form input.red{border-color: red;}
+.tan .box .form form .valicode{position: relative;}
+.tan .box .form form .valicode img{position: absolute;right: 8px;top: 2px;height: 35px;}
+.tan .box .form p.reg{margin-top: 20px;}
+.tan .box .form p.reg a{color: #333;font-size: 12px;float: right;}
+.tan .box .form p.reg a:first-child{float: left;}
+.tan .box .form form .error{height: 30px;line-height: 30px;text-align: left;color: red;font-size: 12px;display: none;}

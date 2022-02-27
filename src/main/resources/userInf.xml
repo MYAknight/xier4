@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.userInfMapper">
+
+    <!--插入新的用户信息-->
+    <insert id="addUserInf" parameterType="bean.user">
+        insert into userlist (user_name, password, phone)
+        values (#{user_name}, #{password}, #{phone})
+    </insert>
+
+    <!--插入收藏内容对应-->
+    <insert id="addMyStars" parameterType="bean.myStar">
+        insert into mystar (book_id, user_id)
+        values (#{book_id}, #{user_id})
+    </insert>
+
+    <select id="getUserStarBooks" resultType="int">
+        select book_id
+        from mystar
+        where user_id = #{id};
+    </select>
+
+    <!--    插入新的书本-->
+    <insert id="addNewBook" parameterType="bean.book">
+        insert into bookbase (name, intro, front, content, type, xianshi)
+        values (#{name}, #{intro}, #{front}, #{content}, #{type}, #{xianshi})
+    </insert>
+
+    <!--    查看当前手机号用户是否已经存在-->
+    <select id="checkExist" resultType="int">
+        select 1
+        from userlist
+        where phone = #{id} limit 1;
+    </select>
+
+    <select id="checkUserID" resultType="int">
+        select user_id
+        from userlist
+        where phone = #{id};
+    </select>
+
+    <!--    查找手机号对应的密码-->
+    <select id="checkName2Password" resultType="String">
+        select password
+        from userlist
+        where phone = #{id};
+    </select>
+
+    <!--    查看管理员对应密码-->
+    <select id="checkAdminPassword" resultType="String">
+        select password
+        from adminlist
+        where admin_name = #{id};
+    </select>
+
+    <!--    模糊搜索应当显示的书（已经弃用）-->
+    <select id="getBookInf" resultType="bean.book">
+        select *
+        from bookbase
+        where xianshi = 1
+          and name like "%"#{name}"%"
+    </select>
+
+    <!--获得用户的信息储存到user里面-->
+    <select id="getUserInf" resultType="bean.user">
+        select *
+        from userlist
+        where phone = #{id};
+    </select>
+
+    <!--    查找符合条件的书的总数目-->
+    <select id="getBookListLength" resultType="int">
+        select COUNT(*)
+        from bookbase
+        where xianshi = 1
+          and name like "%"#{name}"%";
+    </select>
+
+
+    <!--分页查询模糊搜索的书-->
+    <select id="getBookInfByPage" resultType="bean.book" parameterType="Map">
+        select *
+        from bookbase
+        where xianshi = 1
+          and name like "%"#{name}"%" limit #{page1}
+            , #{page2}
+    </select>
+
+    <select id="getBookByID" resultType="bean.book">
+        select *
+        from bookbase
+        where book_ID = #{id}
+    </select>
+
+    <select id="getBookByType" resultType="bean.book">
+        select *
+        from bookbase
+        where type = #{id}
+          and xianshi = 1
+    </select>
+    <!--    查询所有未显示的书目-->
+    <select id="getShowed" resultType="bean.book">
+        select *
+        from bookbase
+        where xianshi = 2
+    </select>
+
+    <!--找到下一个可用ID，保证不会产生名称的冲突-->
+    <select id="getNextId" resultType="int">
+        SELECT AUTO_INCREMENT
+        FROM information_schema.`TABLES`
+        WHERE TABLE_SCHEMA = 'HQSK'
+          AND TABLE_NAME = 'bookbase';
+    </select>
+
+    <!--按照ID删除书的本地文件以及数据库信息-->
+    <delete id="deleteByID" parameterType="String">
+        delete
+        from bookbase
+        where book_ID = #{ID}
+    </delete>
+
+    <!--    将通过的书显示状态设置为显示2-->
+    <update id="changeBookShowState" parameterType="String">
+        update bookbase
+        SET xianshi=1
+        where book_ID = #{ID}
+    </update>
+
+</mapper>

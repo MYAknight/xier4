@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <servlet>
+        <servlet-name>regServ</servlet-name>
+        <servlet-class>serv.regServ</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>regServ</servlet-name>
+        <url-pattern>/userRegister</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>detailSrevlet</servlet-name>
+        <servlet-class>serv.detailSrevlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>detailSrevlet</servlet-name>
+        <url-pattern>/detailSrevlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>adminLoginServ</servlet-name>
+        <servlet-class>serv.adminLoginServ</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminLoginServ</servlet-name>
+        <url-pattern>/adminLoginServ</url-pattern>
+    </servlet-mapping>
+
+
+
+
+
+
+
+    <servlet>
+        <servlet-name>DownLoadServlet</servlet-name>
+        <servlet-class>serv.DownLoadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DownLoadServlet</servlet-name>
+        <url-pattern>/DownLoadServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>serv.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>searchBookServ</servlet-name>
+        <servlet-class>serv.searchBookServ01</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>searchBookServ</servlet-name>
+        <url-pattern>/searchBookServ</url-pattern>
+    </servlet-mapping>
+    <context-param>
+        <param-name>view-prefix</param-name>
+        <param-value>/</param-value>
+    </context-param>
+    <context-param>
+        <param-name>view-suffix</param-name>
+        <param-value>.html</param-value>
+    </context-param>
+
+</web-app>

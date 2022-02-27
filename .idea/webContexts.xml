@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebContextManager">
+    <option name="state">
+      <map>
+        <entry key="file://$PROJECT_DIR$/web/bookStore/diffType.html" value="file://$PROJECT_DIR$/web/bookStore" />
+        <entry key="file://$PROJECT_DIR$/web/bookStore/front.html" value="file://$PROJECT_DIR$/web/bookStore" />
+      </map>
+    </option>
+  </component>
+</project>

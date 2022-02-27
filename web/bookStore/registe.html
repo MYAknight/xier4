@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+</head>
+<body>
+<div align="center" style="border: 1px solid #72480c; ">
+    骅骐书库
+</div>
+    <form action="addUserInf" method="post">
+        <h1 align="center"> 新用户注册 </h1>
+        <table align="center">
+            <tr>
+                <td>昵称:</td>
+                <td><input type="text" name="nickName" id="nickName" onblur="fun1()"/>(6-12个字母，数字或下划线)<font color="red" id="myFont"></font> <br/> <br/></td>
+
+            </tr>
+            <tr>
+                <td> 密码:</td>
+                <td><input type="password" name="password" id="password"/> (8-16个字母，数字或下划线)<br/><br/></td>
+            </tr>
+            <tr>
+                <td> 确认密码:</td>
+                <td><input type="password" name="confPassword" id="confPassword"/><br/><br/></td>
+            </tr>
+            <tr>
+                <td> 记住密码:</td>
+                <td><input type="radio" name="rem" value="yes"/> 是<input type="radio" name="rem" value="no"/> 否<br/><br/>
+                </td>
+            </tr>
+            <tr>
+                <td> Email:</td>
+                <td><input type="text" name="email" id="email"/><br/><br/></td>
+            </tr>
+            <tr>
+                <td><a href="signUp.html">登录</a></td>
+                <td><input type="submit" value="确认注册"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
